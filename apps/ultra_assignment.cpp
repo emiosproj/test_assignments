@@ -37,10 +37,13 @@ void RunLargestSumShowcase(
 void BitWiseAddTest(int left, int right) {
     int right_answer{left + right};
 
-    std::cout << "add(" << left << "," << right
-              << ") = " << osa::ultra::add(left, right) << '\n';
+    int result = osa::ultra::add(left, right);
 
-    assert(right_answer == osa::ultra::add(left, right));
+    std::cout << "add(" << left << "," << right << ")=" << result
+              << " Overflow: " << std::boolalpha
+              << osa::ultra::is_add_overflow(left, right, result) << '\n';
+
+    assert(right_answer == result);
 }
 
 int main(/* int argc, char const *argv[]*/) {
@@ -59,7 +62,7 @@ int main(/* int argc, char const *argv[]*/) {
     RunLargestSumShowcase(test_data);
 
     std::cout << "Bitwise add simple showcase: \n";
-    BitWiseAddTest(25,13);
+    BitWiseAddTest(25, 13);
     BitWiseAddTest(std::numeric_limits<int>::max(), 1);
     std::cout << std::endl;
 
